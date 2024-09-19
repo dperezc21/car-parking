@@ -10,7 +10,6 @@ public enum ParkingType {
 	
 	private Integer value;
 	private double discount;
-	private String chooice;
 	
 	ParkingType(Integer value) {
 		this.value = value;

@@ -33,7 +33,10 @@ public class main {
 
 				ParkingType service = ParkingTypeChoiced.parkingTypeChoiced(value);
 				
-				if(service == null) continue;
+				if(service == null) {
+					System.out.println("**** Ingrese un valor de las opciones***");
+					continue;
+				}
 				
 				userInfo.giveInfo();
 				String clientName = userInfo.clientName();
