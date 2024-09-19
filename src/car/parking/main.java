@@ -10,47 +10,32 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); //Ya tenemos el "lector"
-
-		
+		MenuInterface menuService = new MenuService();
+	
 		Parking parking = new Parking();
+		ValuesUserInterface userInfo = new InfoUserService(); 
 		Scanner scanner = new Scanner(System.in);
 		
 		Boolean breakDown = true;
 		do {	
-			printMenu();
+			menuService.printMenu();
 			String value = scanner.next();
-			if(value.equals("1")) {
-				String clientName = "";
-				String plate = "";
-				try {
+		
+			if(!value.isEmpty()) {
 
-					System.out.print("Ingrese el nombre del cliente: ");
-					clientName = br.readLine();
-
-					System.out.print("Ingrese la placa del carro: ");
-					plate = br.readLine(); 
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				parking.pickUpParking(TypeService.HOUR, clientName, plate);
+				TypeService service = TypeService.typeServiceChooiced(value);
+				
+				userInfo.giveInfo();
+				String clientName = userInfo.clientName();
+				String plate = userInfo.carPlate();
+				parking.pickUpParking(service, clientName, plate);
 			}
 			
 			breakDown = !value.equalsIgnoreCase("fin");
-			System.out.println(" -------- // --------// ----------- TOTAL: "+ parking.getTotal());
 			
 		} while(breakDown);
+		System.out.println(" -------- // --------// ----------- TOTAL: "+ parking.getTotal());
 		
-	}
-	
-	public static void printMenu() {
-		System.out.println("Menu:");
-		System.out.println("1. Parquear por hora.");
-		System.out.println("2. Parquear por media jornada ");
-		System.out.println("3. Parquear por jornada completa. ");
-		System.out.println("4. FIN ");
-		System.out.print("escoger una opcion: ");
 	}
 
 }

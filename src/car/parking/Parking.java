@@ -3,6 +3,7 @@ package car.parking;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Optional;
 
 public class Parking {
 	
@@ -16,7 +17,7 @@ public class Parking {
 	
 	private ArrayList<ParkingBlock> generateParking() { 
 		ArrayList<ParkingBlock> p = new ArrayList<>();
-		for (int i = 1; i < BLOCK_NUMBERS; i++) {
+		for (int i = 1; i <= BLOCK_NUMBERS; i++) {
 			p.add(ParkingBlock.build(i));
 		}
 		return p; 
@@ -27,26 +28,28 @@ public class Parking {
 	}
 	
 	public void pickUpParking(TypeService service, String clientName, String plate) {
-		ParkingBlock blockSelected = parkingBlock.stream()
-				.filter(t -> t.getTypeService() == null)
-				.findFirst()
-				.orElse(null);
+		
+		ParkingBlock blockSelected = getParkingWithoutUse();
 		
 		if(blockSelected != null) {
-			ParkingBlock newBlock = new ParkingBlock(service, clientName, plate);
-			newBlock.setNumber(blockSelected.getNumber());
-			ParkingBlock p = parkingBlock.stream()
-					.filter(t -> t.getNumber() == newBlock.getNumber())
-					.findFirst().get();
+			int index = parkingBlock.indexOf(blockSelected);
 			
-			parkingBlock.add(parkingBlock.indexOf(p), newBlock);
+			blockSelected.setCarPlate(plate);
+			blockSelected.setClientName(clientName);
+			blockSelected.setTypeService(service);
+			
+			parkingBlock.remove(index);
+			parkingBlock.add(index, blockSelected);
+
 			addValueToTotal(service);
 		}
 		print();
 	}
 	
-	public void print() {
-		parkingBlock.forEach(t -> System.out.println(t.toString()));
+	private ParkingBlock getParkingWithoutUse() {
+		return parkingBlock.stream()
+				.filter(t -> t.getTypeService() == null)
+				.findFirst().orElseGet(null);
 	}
 	
 	public double getTotal() {
@@ -62,6 +65,9 @@ public class Parking {
 		return typeService.getValue() - (typeService.getDiscount() * typeService.getValue());
 	}
 	
+	public void print() {
+		parkingBlock.forEach(t -> System.out.println(t.toString()));
+	}
 	
 	
 	
