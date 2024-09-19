@@ -1,8 +1,5 @@
 package car.parking;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import car.parking.enums.ParkingType;
@@ -10,6 +7,7 @@ import car.parking.interfaces.MenuInterface;
 import car.parking.interfaces.ValuesUserInterface;
 import car.parking.services.InfoUserService;
 import car.parking.services.MenuService;
+import car.parking.services.ParkingTypeChoiced;
 
 public class main {
 
@@ -33,7 +31,7 @@ public class main {
 		
 			if(!value.isEmpty()) {
 
-				ParkingType service = ParkingType.typeServiceChooiced(value);
+				ParkingType service = ParkingTypeChoiced.parkingTypeChoiced(value);
 				
 				if(service == null) continue;
 				

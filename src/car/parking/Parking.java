@@ -2,6 +2,7 @@ package car.parking;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Optional;
 
@@ -64,10 +65,6 @@ public class Parking {
 	
 	public double calculateValueByDiscount(ParkingType parkingType) {
 		return parkingType.getValue() - (parkingType.getDiscount() * parkingType.getValue());
-	}
-	
-	public void print() {
-		parkingBlock.forEach(t -> System.out.println(t.toString()));
 	}
 		
 }
