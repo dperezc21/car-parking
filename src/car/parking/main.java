@@ -20,10 +20,16 @@ public class main {
 		do {	
 			menuService.printMenu();
 			String value = scanner.next();
+			
+			breakDown = !value.equalsIgnoreCase("fin");
+			
+			if(!breakDown) break;
 		
 			if(!value.isEmpty()) {
 
 				TypeService service = TypeService.typeServiceChooiced(value);
+				
+				if(service == null) continue;
 				
 				userInfo.giveInfo();
 				String clientName = userInfo.clientName();
@@ -31,10 +37,8 @@ public class main {
 				parking.pickUpParking(service, clientName, plate);
 			}
 			
-			breakDown = !value.equalsIgnoreCase("fin");
-			
 		} while(breakDown);
-		System.out.println(" -------- // --------// ----------- TOTAL: "+ parking.getTotal());
+		System.out.println("TOTAL DEL DIA: "+ parking.getTotal());
 		
 	}
 
