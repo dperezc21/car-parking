@@ -1,4 +1,4 @@
-package car.parking;
+package car.parking.interfaces;
 
 public interface ValuesUserInterface {
 	public String clientName();

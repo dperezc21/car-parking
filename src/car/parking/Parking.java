@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Optional;
 
+import car.parking.enums.ParkingType;
+
 public class Parking {
 	
 	private final ArrayList<ParkingBlock> parkingBlock;
@@ -27,7 +29,7 @@ public class Parking {
 		return parkingBlock;
 	}
 	
-	public void pickUpParking(TypeService service, String clientName, String plate) {
+	public void pickUpParking(ParkingType service, String clientName, String plate) {
 		
 		ParkingBlock blockSelected = getParkingWithoutUse();
 		
@@ -43,7 +45,6 @@ public class Parking {
 
 			addValueToTotal(service);
 		}
-		print();
 	}
 	
 	private ParkingBlock getParkingWithoutUse() {
@@ -56,21 +57,17 @@ public class Parking {
 		return this.total;
 	}
 	
-	public void addValueToTotal(TypeService service) {
+	public void addValueToTotal(ParkingType service) {
 		double value = calculateValueByDiscount(service);
 		total += value;
 	}
 	
-	public double calculateValueByDiscount(TypeService typeService) {
-		return typeService.getValue() - (typeService.getDiscount() * typeService.getValue());
+	public double calculateValueByDiscount(ParkingType parkingType) {
+		return parkingType.getValue() - (parkingType.getDiscount() * parkingType.getValue());
 	}
 	
 	public void print() {
 		parkingBlock.forEach(t -> System.out.println(t.toString()));
 	}
-	
-	
-	
-	
-	
+		
 }

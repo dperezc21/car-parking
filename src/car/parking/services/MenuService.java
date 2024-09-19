@@ -1,4 +1,6 @@
-package car.parking;
+package car.parking.services;
+
+import car.parking.interfaces.MenuInterface;
 
 public class MenuService implements MenuInterface {
 

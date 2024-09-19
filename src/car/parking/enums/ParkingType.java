@@ -1,8 +1,8 @@
-package car.parking;
+package car.parking.enums;
 
 import java.util.HashMap;
 
-public enum TypeService {
+public enum ParkingType {
 	
 	HOUR(3, 0, "1"),
 	HALF(15, 0.05, "2"),
@@ -12,16 +12,16 @@ public enum TypeService {
 	private double discount;
 	private String chooice;
 	
-	TypeService(Integer value) {
+	ParkingType(Integer value) {
 		this.value = value;
 	}
 	
-	TypeService(Integer value, double discount) {
+	ParkingType(Integer value, double discount) {
 		this.value = value;
 		this.discount = discount;
 	}
 	
-	TypeService(Integer value, double discount, String chooice) {
+	ParkingType(Integer value, double discount, String chooice) {
 		this.value = value;
 		this.discount = discount;
 		this.chooice = chooice;
@@ -40,8 +40,8 @@ public enum TypeService {
 		return chooice;
 	}
 	
-	public static TypeService typeServiceChooiced(String value) {
-		HashMap<String, TypeService> hashMap = new HashMap<String, TypeService>(){{
+	public static ParkingType typeServiceChooiced(String value) {
+		HashMap<String, ParkingType> hashMap = new HashMap<String, ParkingType>(){{
 			put("1", HOUR);
 			put("2", HALF);
 			put("3", COMPLETE);

@@ -1,8 +1,10 @@
-package car.parking;
+package car.parking.services;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import car.parking.interfaces.ValuesUserInterface;
 
 public class InfoUserService implements ValuesUserInterface {
 	

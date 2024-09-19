@@ -1,8 +1,10 @@
 package car.parking;
 
+import car.parking.enums.ParkingType;
+
 public class ParkingBlock {
 	private int number;
-	private TypeService typeService;
+	private ParkingType parkingType;
 	private String carPlate;
 	private String clientName;
 	
@@ -12,9 +14,9 @@ public class ParkingBlock {
 		this.number = number;
 	}
 
-	public ParkingBlock(TypeService service, String clientName, String plate) {
+	public ParkingBlock(ParkingType service, String clientName, String plate) {
 		this.clientName = clientName;
-		this.typeService = service;
+		this.parkingType = service;
 		this.carPlate = plate;
 	}
 
@@ -22,12 +24,12 @@ public class ParkingBlock {
 		return number;
 	}
 
-	public TypeService getTypeService() {
-		return typeService;
+	public ParkingType getTypeService() {
+		return parkingType;
 	}
 
-	public void setTypeService(TypeService typeService) {
-		this.typeService = typeService;
+	public void setTypeService(ParkingType parkingType) {
+		this.parkingType = parkingType;
 	}
 
 	public String getCarPlate() {
@@ -54,13 +56,13 @@ public class ParkingBlock {
 		return new ParkingBlock(number);
 	}
 	
-	public static ParkingBlock builBlockComplete(TypeService service, String clientName, String plate) {
+	public static ParkingBlock builBlockComplete(ParkingType service, String clientName, String plate) {
 		return new ParkingBlock(service, clientName, plate);
 	}
 
 	@Override
 	public String toString() {
-		return "ParkingBlock [number=" + number + ", typeService=" + typeService + ", carPlate=" + carPlate
+		return "ParkingBlock [number=" + number + ", typeService=" + parkingType + ", carPlate=" + carPlate
 				+ ", clientName=" + clientName + "]";
 	}
 	

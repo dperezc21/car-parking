@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+import car.parking.enums.ParkingType;
+import car.parking.interfaces.MenuInterface;
+import car.parking.interfaces.ValuesUserInterface;
+import car.parking.services.InfoUserService;
+import car.parking.services.MenuService;
+
 public class main {
 
 	public static void main(String[] args) {
@@ -27,7 +33,7 @@ public class main {
 		
 			if(!value.isEmpty()) {
 
-				TypeService service = TypeService.typeServiceChooiced(value);
+				ParkingType service = ParkingType.typeServiceChooiced(value);
 				
 				if(service == null) continue;
 				
@@ -38,7 +44,7 @@ public class main {
 			}
 			
 		} while(breakDown);
-		System.out.println("TOTAL DEL DIA: "+ parking.getTotal());
+		System.out.println("TOTAL DEL DIA: $"+ parking.getTotal() + " Dolares");
 		
 	}
 
